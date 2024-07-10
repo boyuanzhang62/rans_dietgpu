@@ -9,6 +9,8 @@ project(dietgpu LANGUAGES CUDA CXX VERSION 1.0)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_C_STANDARD 11)
 
+# add_definitions(-D_GLIBCXX_USE_CXX11_ABI=0)
+
 include(CheckLanguage)
 check_language(CUDA)
 
@@ -30,6 +32,7 @@ else()
     string(STRIP "${INSTALLED_GPU_CCS_1}" INSTALLED_GPU_CCS_2)
     string(REPLACE " " ";" INSTALLED_GPU_CCS_3 "${INSTALLED_GPU_CCS_2}")
     string(REPLACE "." "" CUDA_ARCH_LIST "${INSTALLED_GPU_CCS_3}")
+    set(CUDA_ARCH_LIST 86)
     set(CMAKE_CUDA_ARCHITECTURES ${CUDA_ARCH_LIST})
     set_property(GLOBAL PROPERTY CUDA_ARCHITECTURES "${CUDA_ARCH_LIST}")
 endif()

@@ -46,6 +46,12 @@ target_link_libraries(batch_prefix_sum_test
 )
 gtest_discover_tests(batch_prefix_sum_test)
 
+add_executable(myans myans.cu)
+target_link_libraries(myans
+  gpu_ans
+  gtest_main
+)
+
 get_property(GLOBAL_CUDA_ARCHITECTURES GLOBAL PROPERTY CUDA_ARCHITECTURES)
 set_target_properties(gpu_ans ans_test ans_statistics_test batch_prefix_sum_test
   PROPERTIES CUDA_ARCHITECTURES "${GLOBAL_CUDA_ARCHITECTURES}"
