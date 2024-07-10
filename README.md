@@ -38,8 +38,8 @@ Note you need NVIDIA's container runtime installed (if on Fedora consult this [G
 Then do the standard CMake thing:
 
 ```shell
-cd dietgpu; mkdir build; cd build;
-cmake .. -G Ninja
+cd dietgpu && mkdir build && cd build;
+cmake .. -DWITH_GFLAGS=OFF -DWITH_GTEST=OFF -G Ninja
 cmake --build . --target all
 ```
 
@@ -74,6 +74,11 @@ The initial focus of this library will be in HPC/ML distributed collective commu
 ## ANS codec
 
 The rANS codec operates on 8 bit bytes. It can compress arbitrary data, but using statistics gathered on a bytewise basis, so data highly structured or redundant at a level above byte level will typically not compress well. This codec however is meant to be applicable for any number of lossless compression applications, including usage as an entropy coder for LZ or RLE type matches for a fully-formed compression system. Symbol probability precisions supported are 9, 10 and 11 bits (i.e., symbol occurances are quantized to the nearest 1/512, 1/1024 or 1/2048).
+
+To run the example testing the ans codec:
+```
+./bin/myans [file_path]
+```
 
 ## Float codec
 
